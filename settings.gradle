@@ -1,0 +1,2 @@
+rootProject.name='Peace media player'
+include ':app'
