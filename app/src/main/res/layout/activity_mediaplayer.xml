@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/viewer"
     android:layout_height="match_parent"
     android:background="#201D1D"
     tools:context=".mediaplayer">
@@ -28,26 +29,35 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="600dp"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:text="Textiew"
-            android:textStyle="italic"
             android:textColor="#ffff"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="11dp" />
+
+        <ImageView
+            android:id="@+id/rightseek"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="0dp"
+            android:src="@drawable/ic_fast_forward_black_24dp"
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
-        android:layout_width="729dp"
-        android:layout_height="76dp"
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -56,36 +66,35 @@
         android:backgroundTint="#18FFFFFF"
         app:layout_constraintStart_toStartOf="parent" >
 
+
         <ImageView
             android:id="@+id/leftseek"
             android:layout_width="220dp"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:paddingLeft="0dp"
             android:src="@drawable/ic_fast_rewind_black_24dp"
+            android:paddingBottom="0dp"
             tools:layout_editor_absoluteX="16dp" />
 
         <ImageView
             android:id="@+id/pause"
             android:layout_width="250dp"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:paddingLeft="0dp"
-            android:src="@drawable/ic_play_circle_filled_black_24dp"
+            android:src="@drawable/ic_pause_circle_filled_black_24dp"
             tools:layout_editor_absoluteX="16dp" />
         <ImageView
-            android:id="@+id/rightseek"
+            android:id="@+id/rightseekk"
             android:layout_width="220dp"
-            android:layout_height="match_parent"
-            android:paddingLeft="0dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_fast_forward_black_24dp"
             tools:layout_editor_absoluteX="16dp" />
 
 
 
-
-
-
-
     </androidx.appcompat.widget.Toolbar>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

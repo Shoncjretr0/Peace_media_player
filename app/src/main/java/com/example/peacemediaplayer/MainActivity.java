@@ -17,10 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    public static String name;
+    public static String name,namee;
     int uploads=0;
     Uri imageuri;
     private static int PICK_IMAGE = 123;
@@ -34,14 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button button =findViewById(R.id.button);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void rrmain(){
         name=imageuri.toString();
+        File file= new File(imageuri.getPath());
+        namee= file.getName();
 
 
     }
