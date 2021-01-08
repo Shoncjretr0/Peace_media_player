@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -18,9 +19,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 import android.widget.VideoView;
+
+import java.util.Objects;
 
 public class mediaplayer extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -28,7 +33,7 @@ public class mediaplayer extends AppCompatActivity implements
     private static final String TAG ="dddd" ;
     String url=MainActivity.name;
     String vedioname=MainActivity.namee;
-    int stopPosition;
+    int stopPosition,seekPosition;
     VideoView video;
     ImageView play;
     ImageView reverseseek;
@@ -36,13 +41,13 @@ public class mediaplayer extends AppCompatActivity implements
     int playvariable;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
-    private static final int SWIPE_THRESHOLD = 100;
-    private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+    private static final int SWIPE_THRESHOLD = 200;
+    private static final int SWIPE_VELOCITY_THRESHOLD = 200;
     private AudioManager mAudioManager;
-    float incbrightness;
-    float decbrightness;
-
-
+    SeekBar brightnessbar;
+    SeekBar volumebar;
+    Toolbar tb1;
+    Toolbar tb2;
 
 
     @SuppressLint("NewApi")
@@ -52,14 +57,18 @@ public class mediaplayer extends AppCompatActivity implements
         setContentView(R.layout.activity_mediaplayer);
          video=findViewById(R.id.videoView);
           TextView tv=findViewById(R.id.textView);
-
+          Objects.requireNonNull(this.getSupportActionBar()).hide();
         reverseseek=findViewById(R.id.leftseek);
         play=findViewById(R.id.pause);
         forwardseek=findViewById(R.id.rightseek);
+         brightnessbar= findViewById(R.id.seekBarbrightness);
+         volumebar=findViewById(R.id.seekBarvolume);
         tv.setText(vedioname);
         video.setVideoPath(url);
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        brightnessbar.getThumb().mutate().setAlpha(0);
+        volumebar.getThumb().mutate().setAlpha(0);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +208,23 @@ public class mediaplayer extends AppCompatActivity implements
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
-       // Toast.makeText(this, "single tap", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "single tap", Toast.LENGTH_SHORT).show();
+        Objects.requireNonNull(this.getSupportActionBar()).show();
+        new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+
+               hide();
+
+            }
+
+        }.start();
+
         return true;
     }
     void hideStatusBar() {
@@ -215,42 +240,32 @@ public class mediaplayer extends AppCompatActivity implements
 
     public void onSwipeRight() {
         Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
-      //  if (incbrightness>=255) {
-            Settings.System.putInt(this.getContentResolver(),
-                    Settings.System.SCREEN_BRIGHTNESS, 255);
-     //   }
-      //  else{
-           // incbrightness=brightness+30;
-
-       //     Settings.System.putInt(this.getContentResolver(),
-      //              Settings.System.SCREEN_BRIGHTNESS, (int) incbrightness);
-       // }
+        seekPosition = video.getCurrentPosition();
+        int seek=seekPosition+10;
+        video.seekTo(seek);
 
     }
 
     public void onSwipeLeft() {
         Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
-     //   if (incbrightness<=0) {
-            Settings.System.putInt(this.getContentResolver(),
-                    Settings.System.SCREEN_BRIGHTNESS, 45);
-    //    }
-    //    else{
+        seekPosition = video.getCurrentPosition();
+        int seek=seekPosition-10;
+        video.seekTo(seek);
 
-         //   decbrightness=brightness-30;
-    //        Settings.System.putInt(this.getContentResolver(),
-        //            Settings.System.SCREEN_BRIGHTNESS, (int) decbrightness);
-    //    }
     }
 
     public void onSwipeTop() {
-        Toast.makeText(this, "top", Toast.LENGTH_SHORT).show();
-        mAudioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+
     }
 
     public void onSwipeBottom() {
-        Toast.makeText(this, "down", Toast.LENGTH_SHORT).show();
-        mAudioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
 
+
+    }
+
+    void hide(){
+
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
     }
 
 
