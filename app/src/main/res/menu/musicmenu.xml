@@ -2,17 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/item4"
-        android:title="coin"
-        android:icon="@drawable/ic_brightness_3_black_24dp"
-        app:showAsAction="ifRoom" />
+
     <item android:id="@+id/item3"
         android:title="chat"
-        android:icon="@drawable/ic_music_note_black_24dp"
+        android:icon="@drawable/ic_new_releases_black_24dp"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/item1"
         android:title="share"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/item2"
         android:title="settings"
@@ -21,4 +18,4 @@
 
 
 
-    </menu>
+</menu>

@@ -11,21 +11,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="95dp"
-        android:layout_height="97dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_folder_black_24dp" />
+        app:srcCompat="@drawable/ic_folder_black_24dp"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
         android:text="Download"
         android:textColor="#ffffff"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         android:layout_alignStart="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,9 +36,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
         android:text="24 Video"
+        android:textSize="12dp"
         android:textColor="#ffffff"
         android:layout_alignStart="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -45,21 +48,25 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="36dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="8dp"
+        app:layout_anchor="@+id/imageView"
+        app:layout_anchorGravity="end|top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_brightness_1_black_24dp" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="23dp"
-        android:layout_height="19dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:padding="1dp"
+        android:paddingTop="3dp"
         android:text="24"
         android:textColor="#FFFFFF"
-        android:textSize="16dp"
+        android:textSize="8dp"
         app:layout_anchor="@+id/imageView4"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"

@@ -18,6 +18,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -41,8 +43,8 @@ public class mediaplayer extends AppCompatActivity implements
     int playvariable;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
-    private static final int SWIPE_THRESHOLD = 200;
-    private static final int SWIPE_VELOCITY_THRESHOLD = 200;
+    private static final int SWIPE_THRESHOLD = 300;
+    private static final int SWIPE_VELOCITY_THRESHOLD = 300;
     private AudioManager mAudioManager;
     SeekBar brightnessbar;
     SeekBar volumebar;
@@ -57,7 +59,9 @@ public class mediaplayer extends AppCompatActivity implements
         setContentView(R.layout.activity_mediaplayer);
          video=findViewById(R.id.videoView);
           TextView tv=findViewById(R.id.textView);
-          Objects.requireNonNull(this.getSupportActionBar()).hide();
+        //  tb1=findViewById(R.id.toolbar2);
+       //  tb1.animate().translationY(-tb1.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
+        Toast.makeText(this, vedioname, Toast.LENGTH_SHORT).show();
         reverseseek=findViewById(R.id.leftseek);
         play=findViewById(R.id.pause);
         forwardseek=findViewById(R.id.rightseek);
@@ -104,7 +108,7 @@ public class mediaplayer extends AppCompatActivity implements
     public void onPause() {
         Log.d(TAG, "onPause called");
         super.onPause();
-        stopPosition = video.getCurrentPosition(); //stopPosition is an int
+        stopPosition = video.getCurrentPosition();
         video.pause();
     }
     @Override
@@ -112,7 +116,7 @@ public class mediaplayer extends AppCompatActivity implements
         super.onResume();
         Log.d(TAG, "onResume called");
         video.seekTo(stopPosition);
-        video.start(); //Or use resume() if it doesn't work. I'm not sure
+        video.start();
     }
     @Override
     public boolean onTouchEvent(MotionEvent event){
@@ -209,21 +213,21 @@ public class mediaplayer extends AppCompatActivity implements
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         Toast.makeText(this, "single tap", Toast.LENGTH_SHORT).show();
-        Objects.requireNonNull(this.getSupportActionBar()).show();
-        new CountDownTimer(30000, 1000) {
+       // tb1.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
+       // new CountDownTimer(30000, 1000) {
 
-            public void onTick(long millisUntilFinished) {
+        //    public void onTick(long millisUntilFinished) {
 
                 //here you can have your logic to set text to edittext
-            }
+        //    }
 
-            public void onFinish() {
+        //     public void onFinish() {
 
-               hide();
+        //        hide();
 
-            }
+        //     }
 
-        }.start();
+        //   }.start();
 
         return true;
     }
@@ -241,7 +245,7 @@ public class mediaplayer extends AppCompatActivity implements
     public void onSwipeRight() {
         Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition+10;
+        int seek=seekPosition+1000;
         video.seekTo(seek);
 
     }
@@ -249,7 +253,7 @@ public class mediaplayer extends AppCompatActivity implements
     public void onSwipeLeft() {
         Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition-10;
+        int seek=seekPosition-1000;
         video.seekTo(seek);
 
     }
@@ -265,7 +269,7 @@ public class mediaplayer extends AppCompatActivity implements
 
     void hide(){
 
-        Objects.requireNonNull(this.getSupportActionBar()).hide();
+        tb1.animate().translationY(-tb1.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
     }
 
 
