@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String mode = "day";
     String modetext;
     ListView simpleList;
-    String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
+    private videoadapter mAdapter;
     SharedPreferences sharedpreferences;
     private static final int STORAGE_PERMISSION_CODE = 101;
 
@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
          List<String> songs = new ArrayList<String>();
         List<String> foldername = new ArrayList<String>();
+        List<String> foldernamee = new ArrayList<String>();
+        final List<videomodel> songdetails = new ArrayList<>();
         while(cursor.moveToNext()) {
             /*songs.add(cursor.getString(0) + "||"
                     + cursor.getString(1) + "||"
@@ -111,16 +113,43 @@ public class MainActivity extends AppCompatActivity {
                     + cursor.getString(4) + "||"
                     + cursor.getString(5));*/
 
-            foldername.add( Objects.requireNonNull(new File(cursor.getString(3)).getParentFile()).getName());
+            foldername.add( Objects.requireNonNull(new File(cursor.getString(3)).getParentFile()).getName() +"|"+ new File(cursor.getString(3)).getParent() );
         }
         Set<String> set = new HashSet<>(foldername);
-        foldername.clear();
-        foldername.addAll(set);
+        foldernamee.addAll(set);
+
+        String[] a= foldernamee.toArray(new String[0]);
+        for (int i=0;i<a.length;i++){
+
+            //String[] parts = a[i].split("");
+           /// String first = parts[0];
+          //  String second = parts[1];
+           // Toast.makeText(MainActivity.this, a[i], Toast.LENGTH_SHORT).show();
+            int indexOfDash = a[i].indexOf('|');
+            String before = a[i].substring(0, indexOfDash);
+            String after = a[i].substring(indexOfDash + 1);
+           songdetails.add( new videomodel(before,after));
+        }
+
+        //int indexOfDash = dd.indexOf('|');
+       // String before = dd.substring(0, indexOfDash);
+      //  String after = dd.substring(indexOfDash + 1);
+        //Toast.makeText(MainActivity.this, before +","+after, Toast.LENGTH_SHORT).show();
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_folder, R.id.textView,foldername);
-        simpleList.setAdapter(arrayAdapter);
-      
+
+       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_folder, R.id.textView,foldernamee);
+        //simpleList.setAdapter(arrayAdapter);
+        mAdapter = new videoadapter(this, (ArrayList<videomodel>) songdetails );
+        simpleList.setAdapter(mAdapter);
+        //if (fullText.toLowerCase().indexOf(singleWord.toLowerCase()) > -1) {
+
+           // find = true;
+       // }
+        // File f = new File("/home/jigar/Desktop/1.txt");
+        // String g=f.getParent();
+        // String h="/home/jigar/Desktop/1.txt";
+        //String result = Objects.requireNonNull(new File(h).getParentFile()).getName();
 
 
 

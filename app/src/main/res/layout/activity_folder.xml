@@ -28,6 +28,8 @@
         android:text="Download"
         android:textColor="#ffffff"
         android:textSize="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textStyle="bold"
         android:layout_alignStart="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
