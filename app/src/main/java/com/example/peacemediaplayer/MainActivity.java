@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -22,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
 
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
@@ -36,8 +40,13 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     public static String name,namee;
@@ -48,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private static int PICK_IMAGE = 123;
     public ArrayList<Uri> ImageList = new ArrayList<Uri>();
     private String text;
+    Cursor cursor;
 
     RelativeLayout rr;
     private Menu menu;
@@ -60,55 +70,57 @@ public class MainActivity extends AppCompatActivity {
     private static final int STORAGE_PERMISSION_CODE = 101;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.topBr);
         simpleList = (ListView)findViewById(R.id.listviewbuy);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_folder, R.id.textView, countryList);
-        simpleList.setAdapter(arrayAdapter);
+
 
         setSupportActionBar(toolbar);
         loadData();
         checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
-       // String nameee = sharedpreferences.getString("mode", "");
-       // Toast.makeText(MainActivity.this, nameee,Toast.LENGTH_LONG).show();
+
+        String selection=MediaStore.Video.Media.DATA + " != 0";
+        String[] projection = {
+                MediaStore.Video.Media._ID,
+                MediaStore.Video.Media.ARTIST,
+                MediaStore.Video.Media.TITLE,
+                MediaStore.Video.Media.DATA,
+                MediaStore.Video.Media.DISPLAY_NAME,
+                MediaStore.Video.Media.DURATION,
+
+        };
+
+        cursor =getContentResolver().query(
+                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                null,
+                null);
+
+         List<String> songs = new ArrayList<String>();
+        List<String> foldername = new ArrayList<String>();
+        while(cursor.moveToNext()) {
+            /*songs.add(cursor.getString(0) + "||"
+                    + cursor.getString(1) + "||"
+                    + cursor.getString(2) + "||"
+                    + cursor.getString(3) + "||"
+                    + cursor.getString(4) + "||"
+                    + cursor.getString(5));*/
+
+            foldername.add( Objects.requireNonNull(new File(cursor.getString(3)).getParentFile()).getName());
+        }
+        Set<String> set = new HashSet<>(foldername);
+        foldername.clear();
+        foldername.addAll(set);
 
 
-
-       // File dir = new File(Environment.getExternalStorageDirectory() + "/yourfolder");
-       /* File dir = new File(String.valueOf(Environment.getExternalStorageDirectory()));
-        File[] files = dir.listFiles();
-        if (files != null) {
-            int numberOfFiles = files.length;
-            Toast.makeText(MainActivity.this, numberOfFiles,Toast.LENGTH_LONG).show();
-            String v=String.valueOf(Environment.getExternalStorageDirectory());
-            Toast.makeText(MainActivity.this, v ,Toast.LENGTH_LONG).show();
-
-        }*/
-
-
-
-
-
-
-
-
-
-       // image.setOnClickListener(new View.OnClickListener() {
-      //      @Override
-      //      public void onClick(View view) {
-
-     //            rr.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.nightmode));
-
-      //      }
-     //   });
-
-
-
-
-
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_folder, R.id.textView,foldername);
+        simpleList.setAdapter(arrayAdapter);
+      
 
 
 

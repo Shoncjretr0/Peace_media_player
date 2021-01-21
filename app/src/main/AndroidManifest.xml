@@ -13,13 +13,13 @@
         android:roundIcon="@drawable/clipart796508"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".test"></activity>
         <activity android:name=".bottomsheetlayout" />
         <activity android:name=".musiclayout" />
         <activity
             android:name=".music"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Main2Activity"
             android:theme="@style/AppTheme.NoActionBar" />
