@@ -36,6 +36,7 @@ public class videoadapter extends ArrayAdapter<videomodel> {
         moviesList = list;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -50,7 +51,10 @@ public class videoadapter extends ArrayAdapter<videomodel> {
 
         TextView name = (TextView) listItem.findViewById(R.id.textView);
         name.setText(currentMovie.getName());
-
+        TextView countno = (TextView) listItem.findViewById(R.id.textView4);
+        countno.setText(String.valueOf(currentMovie.getCount()));
+        TextView count = (TextView) listItem.findViewById(R.id.textView3);
+        count.setText(currentMovie.getCount()+" "+"Videos");
 
 
         return listItem;

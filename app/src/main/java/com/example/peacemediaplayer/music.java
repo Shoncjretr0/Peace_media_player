@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -112,7 +114,7 @@ public class music extends AppCompatActivity {
             songdetails.add(new AudioModel(cursor.getString(0),cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4), cursor.getString(5) ) );
 
         }
-        Toolbar toolbar = findViewById(R.id.topBr);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         simpleList = (ListView)findViewById(R.id.listviewbuy);
         mAdapter = new musicadapter(this, (ArrayList<AudioModel>) songdetails);
@@ -126,6 +128,7 @@ public class music extends AppCompatActivity {
 
                 path=listbuy.getData();
                  name=listbuy.getmName();
+                Toast.makeText(music.this, path, Toast.LENGTH_SHORT ).show();
                 if(playconfirm==1){
                     mediaPlayer.stop();
                     playconfirm=0;
@@ -159,6 +162,33 @@ public class music extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.musicmenu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Intent myIntent=new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String shareBody="https://shoncj.wordpress.com/2020/03/25/thunder-app/ try this app";
+                String shareSub="hope you download it";
+                myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+                startActivity(Intent.createChooser(myIntent,"Share Using"));
+                return true;
+            case R.id.item2:
+
+
+                return true;
+            case R.id.item3:
+                //music
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
     }
     
 

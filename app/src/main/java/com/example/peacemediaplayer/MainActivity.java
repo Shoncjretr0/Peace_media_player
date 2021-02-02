@@ -30,6 +30,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private videoadapter mAdapter;
     SharedPreferences sharedpreferences;
     private static final int STORAGE_PERMISSION_CODE = 101;
+    public static String path;
 
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
         String selection=MediaStore.Video.Media.DATA + " != 0";
+        Toast.makeText(MainActivity.this, selection, Toast.LENGTH_SHORT).show();
         String[] projection = {
                 MediaStore.Video.Media._ID,
                 MediaStore.Video.Media.ARTIST,
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
          List<String> songs = new ArrayList<String>();
         List<String> foldername = new ArrayList<String>();
+        List<String> foldernamecompare = new ArrayList<String>();
         List<String> foldernamee = new ArrayList<String>();
         final List<videomodel> songdetails = new ArrayList<>();
         while(cursor.moveToNext()) {
@@ -113,22 +117,26 @@ public class MainActivity extends AppCompatActivity {
                     + cursor.getString(4) + "||"
                     + cursor.getString(5));*/
 
+               foldernamecompare.add( Objects.requireNonNull(new File(cursor.getString(3)).getParent()));
             foldername.add( Objects.requireNonNull(new File(cursor.getString(3)).getParentFile()).getName() +"|"+ new File(cursor.getString(3)).getParent() );
         }
         Set<String> set = new HashSet<>(foldername);
         foldernamee.addAll(set);
 
         String[] a= foldernamee.toArray(new String[0]);
+        String[] b= foldernamecompare.toArray(new String[0]);
         for (int i=0;i<a.length;i++){
 
-            //String[] parts = a[i].split("");
-           /// String first = parts[0];
-          //  String second = parts[1];
-           // Toast.makeText(MainActivity.this, a[i], Toast.LENGTH_SHORT).show();
+            int count=0;
             int indexOfDash = a[i].indexOf('|');
             String before = a[i].substring(0, indexOfDash);
             String after = a[i].substring(indexOfDash + 1);
-           songdetails.add( new videomodel(before,after));
+             for(int j=0;j<b.length;j++){
+                 if(b[j].equals(after)){
+                     count=count+1;
+                 }
+             }
+           songdetails.add( new videomodel(before,after,count));
         }
 
         //int indexOfDash = dd.indexOf('|');
@@ -150,6 +158,18 @@ public class MainActivity extends AppCompatActivity {
         // String g=f.getParent();
         // String h="/home/jigar/Desktop/1.txt";
         //String result = Objects.requireNonNull(new File(h).getParentFile()).getName();
+        simpleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                videomodel listbuy = songdetails.get(i);
+
+                path = listbuy.getPath();
+
+                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+            }
+            });
 
 
 
@@ -185,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.item2:
 
-                    select();
+                   // select();
                 return true;
             case R.id.item3:
                //music
@@ -253,7 +273,7 @@ void select(){
             editor.putString(mode, "day");
             editor.apply();
             Toast.makeText(MainActivity.this, "day mode", Toast.LENGTH_SHORT ).show();
-            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_wb_sunny_black_24dp));
+            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.vol));
             loadData();
 
         }

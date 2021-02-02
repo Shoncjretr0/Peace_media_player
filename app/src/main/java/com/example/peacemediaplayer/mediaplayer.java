@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,20 +22,23 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 import android.widget.VideoView;
 
+import java.io.File;
 import java.util.Objects;
 
 public class mediaplayer extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
     private static final String TAG ="dddd" ;
-    String url=MainActivity.name;
-    String vedioname=MainActivity.namee;
+    String url=Main2Activity.path1;
+    String vedioname=Main2Activity.name1;
+    String duration=Main2Activity.duration1;
     int stopPosition,seekPosition;
     VideoView video;
     ImageView play;
@@ -48,6 +52,8 @@ public class mediaplayer extends AppCompatActivity implements
     private AudioManager mAudioManager;
     SeekBar brightnessbar;
     SeekBar volumebar;
+    ProgressBar bri;
+    ProgressBar vol;
     Toolbar tb1;
     Toolbar tb2;
 
@@ -64,15 +70,16 @@ public class mediaplayer extends AppCompatActivity implements
         Toast.makeText(this, vedioname, Toast.LENGTH_SHORT).show();
         reverseseek=findViewById(R.id.leftseek);
         play=findViewById(R.id.pause);
-        forwardseek=findViewById(R.id.rightseek);
+        forwardseek=findViewById(R.id.rightseekk);
          brightnessbar= findViewById(R.id.seekBarbrightness);
          volumebar=findViewById(R.id.seekBarvolume);
         tv.setText(vedioname);
-        video.setVideoPath(url);
+        Uri s= Uri.fromFile(new File(url));
+        video.setVideoPath(String.valueOf(s));
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        brightnessbar.getThumb().mutate().setAlpha(0);
-        volumebar.getThumb().mutate().setAlpha(0);
+       // brightnessbar.getThumb().mutate().setAlpha(0);
+       // volumebar.getThumb().mutate().setAlpha(0);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +110,10 @@ public class mediaplayer extends AppCompatActivity implements
             // in the range [0, 255]
 
         }
+
+
+
+
 
     @Override
     public void onPause() {
@@ -243,17 +254,15 @@ public class mediaplayer extends AppCompatActivity implements
     }
 
     public void onSwipeRight() {
-        Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition+1000;
+        int seek=seekPosition+50000;
         video.seekTo(seek);
 
     }
 
     public void onSwipeLeft() {
-        Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition-1000;
+        int seek=seekPosition-50000;
         video.seekTo(seek);
 
     }

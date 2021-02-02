@@ -6,9 +6,20 @@ public class videomodel {
 
     private String path;
 
-    public videomodel(String Name, String path) {
+    private Integer count;
+
+    public videomodel(String Name, String path,Integer count) {
         this.Name = Name;
         this.path = path;
+        this.count=count;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getName() {
