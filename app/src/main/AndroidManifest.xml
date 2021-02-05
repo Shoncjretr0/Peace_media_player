@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/clipart796508"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test"></activity>
+        <activity android:name=".notification"></activity>
+        <activity android:name=".test" />
         <activity android:name=".bottomsheetlayout" />
         <activity android:name=".musiclayout" />
         <activity

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -23,6 +24,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +37,11 @@ import java.util.Objects;
 public class mediaplayer extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
-    private static final String TAG ="dddd" ;
-    String url=Main2Activity.path1;
-    String vedioname=Main2Activity.name1;
-    String duration=Main2Activity.duration1;
-    int stopPosition,seekPosition;
+    private static final String TAG = "dddd";
+    String url = Main2Activity.path1;
+    String vedioname = Main2Activity.name1;
+    String duration = Main2Activity.duration1;
+    int stopPosition, seekPosition;
     VideoView video;
     ImageView play;
     ImageView reverseseek;
@@ -51,11 +53,11 @@ public class mediaplayer extends AppCompatActivity implements
     private static final int SWIPE_VELOCITY_THRESHOLD = 300;
     private AudioManager mAudioManager;
     SeekBar brightnessbar;
-    SeekBar volumebar;
-    ProgressBar bri;
-    ProgressBar vol;
-    Toolbar tb1;
-    Toolbar tb2;
+    SeekBar volumebar = null;
+    RelativeLayout r1, r2;
+    ImageView bri, vol;
+    TextView brino, volno;
+    private AudioManager audioManager = null;
 
 
     @SuppressLint("NewApi")
@@ -63,56 +65,74 @@ public class mediaplayer extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mediaplayer);
-         video=findViewById(R.id.videoView);
-          TextView tv=findViewById(R.id.textView);
-        //  tb1=findViewById(R.id.toolbar2);
-       //  tb1.animate().translationY(-tb1.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
+        video = findViewById(R.id.videoView);
+        TextView tv = findViewById(R.id.textView);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         Toast.makeText(this, vedioname, Toast.LENGTH_SHORT).show();
-        reverseseek=findViewById(R.id.leftseek);
-        play=findViewById(R.id.pause);
-        forwardseek=findViewById(R.id.rightseekk);
-         brightnessbar= findViewById(R.id.seekBarbrightness);
-         volumebar=findViewById(R.id.seekBarvolume);
+        reverseseek = findViewById(R.id.leftseek);
+        play = findViewById(R.id.pause);
+        forwardseek = findViewById(R.id.rightseekk);
+        brightnessbar = findViewById(R.id.seekBarvolume);
+        volumebar = findViewById(R.id.seekBarbrightness);
+        r1 = findViewById(R.id.toolbar3);
+        r2 = findViewById(R.id.toolbar2);
+        bri = findViewById(R.id.imageView12);
+        vol = findViewById(R.id.imageView16);
+        brino = findViewById(R.id.textbri);
+        volno = findViewById(R.id.textvol);
         tv.setText(vedioname);
-        Uri s= Uri.fromFile(new File(url));
+        Uri s = Uri.fromFile(new File(url));
         video.setVideoPath(String.valueOf(s));
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-       // brightnessbar.getThumb().mutate().setAlpha(0);
-       // volumebar.getThumb().mutate().setAlpha(0);
+        initControls();
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-               if(playvariable==0)
-               {
-                   play.setImageResource(R.drawable.ic_play_circle_filled_black_24dp);
-                   onPause();
-                   playvariable=playvariable+1;
-               }
-               else
-               {
-                   onResume();
-                   play.setImageResource(R.drawable.ic_pause_circle_filled_black_24dp);
-                   playvariable=playvariable-1;
-               }
+                if (playvariable == 0) {
+                    play.setImageResource(R.drawable.ic_play_circle_filled_black_24dp);
+                    onPause();
+                    playvariable = playvariable + 1;
+                } else {
+                    onResume();
+                    play.setImageResource(R.drawable.ic_pause_circle_filled_black_24dp);
+                    playvariable = playvariable - 1;
+                }
 
             }
 
 
-    });
-        mDetector = new GestureDetectorCompat(this,this);
+        });
+        mDetector = new GestureDetectorCompat(this, this);
         mDetector.setOnDoubleTapListener(this);
-        hideStatusBar();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hidetab();
+            }
+        }, 3000);
+        brightnessbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                brino.setText(Integer.toString(progress));
+                mediaplayer.this.setScreenBrightness((float) seekBar.getProgress() / 100);
+            }
 
-            // Get system brightness
-            // in the range [0, 255]
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
-        }
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
-
+    }
 
 
     @Override
@@ -122,6 +142,7 @@ public class mediaplayer extends AppCompatActivity implements
         stopPosition = video.getCurrentPosition();
         video.pause();
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -129,8 +150,9 @@ public class mediaplayer extends AppCompatActivity implements
         video.seekTo(stopPosition);
         video.start();
     }
+
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         if (this.mDetector.onTouchEvent(event)) {
             return true;
 
@@ -142,13 +164,11 @@ public class mediaplayer extends AppCompatActivity implements
 
     @Override
     public boolean onDown(MotionEvent event) {
-        Log.d(DEBUG_TAG,"onDown: " + event.toString());
+        Log.d(DEBUG_TAG, "onDown: " + event.toString());
 
         return true;
 
     }
-
-
 
 
     @Override
@@ -166,8 +186,7 @@ public class mediaplayer extends AppCompatActivity implements
                     }
                     result = true;
                 }
-            }
-            else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+            } else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffY > 0) {
                     onSwipeBottom();
                 } else {
@@ -182,18 +201,17 @@ public class mediaplayer extends AppCompatActivity implements
     }
 
 
-
     @Override
     public void onLongPress(MotionEvent event) {
         Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
-      //  Toast.makeText(this, "long press", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "long press", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onScroll(MotionEvent event1, MotionEvent event2, float distanceX,
                             float distanceY) {
         Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
-      //  Toast.makeText(this, "scrolll", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "scrolll", Toast.LENGTH_SHORT).show();
         return true;
     }
 
@@ -224,45 +242,30 @@ public class mediaplayer extends AppCompatActivity implements
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         Toast.makeText(this, "single tap", Toast.LENGTH_SHORT).show();
-       // tb1.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
-       // new CountDownTimer(30000, 1000) {
+        settab();
 
-        //    public void onTick(long millisUntilFinished) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hidetab();
+            }
+        }, 5000);
 
-                //here you can have your logic to set text to edittext
-        //    }
-
-        //     public void onFinish() {
-
-        //        hide();
-
-        //     }
-
-        //   }.start();
 
         return true;
     }
-    void hideStatusBar() {
-        if (Build.VERSION.SDK_INT < 16) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
-        }
-    }
+
 
     public void onSwipeRight() {
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition+50000;
+        int seek = seekPosition + 50000;
         video.seekTo(seek);
 
     }
 
     public void onSwipeLeft() {
         seekPosition = video.getCurrentPosition();
-        int seek=seekPosition-50000;
+        int seek = seekPosition - 50000;
         video.seekTo(seek);
 
     }
@@ -276,11 +279,104 @@ public class mediaplayer extends AppCompatActivity implements
 
     }
 
-    void hide(){
+    public void hidetab() {
 
-        tb1.animate().translationY(-tb1.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
+        if (r1.getVisibility() == View.VISIBLE) {
+            r1.setVisibility(View.GONE);
+        }
+        if (r2.getVisibility() == View.VISIBLE) {
+            r2.setVisibility(View.GONE);
+        }
+        if (brightnessbar.getVisibility() == View.VISIBLE) {
+            brightnessbar.setVisibility(View.GONE);
+        }
+        if (volumebar.getVisibility() == View.VISIBLE) {
+            volumebar.setVisibility(View.GONE);
+        }
+        if (brino.getVisibility() == View.VISIBLE) {
+            brino.setVisibility(View.GONE);
+        }
+        if (volno.getVisibility() == View.VISIBLE) {
+            volno.setVisibility(View.GONE);
+        }
+        if (bri.getVisibility() == View.VISIBLE) {
+            bri.setVisibility(View.GONE);
+        }
+        if (vol.getVisibility() == View.VISIBLE) {
+            vol.setVisibility(View.GONE);
+        }
+
+
     }
 
+    public void settab() {
 
+        if (r1.getVisibility() == View.GONE) {
+            r1.setVisibility(View.VISIBLE);
+        }
+        if (r2.getVisibility() == View.GONE) {
+            r2.setVisibility(View.VISIBLE);
+        }
+        if (brightnessbar.getVisibility() == View.GONE) {
+            brightnessbar.setVisibility(View.VISIBLE);
+        }
+        if (volumebar.getVisibility() == View.GONE) {
+            volumebar.setVisibility(View.VISIBLE);
+        }
+        if (brino.getVisibility() == View.GONE) {
+            brino.setVisibility(View.VISIBLE);
+        }
+        if (volno.getVisibility() == View.GONE) {
+            volno.setVisibility(View.VISIBLE);
+        }
+        if (bri.getVisibility() == View.GONE) {
+            bri.setVisibility(View.VISIBLE);
+        }
+        if (vol.getVisibility() == View.GONE) {
+            vol.setVisibility(View.VISIBLE);
+        }
+
+
+    }
+
+    private void setScreenBrightness(float num) {
+        WindowManager.LayoutParams layoutParams = super.getWindow().getAttributes();
+        layoutParams.screenBrightness = num;
+        super.getWindow().setAttributes(layoutParams);
+    }
+
+    private void initControls() {
+
+        try {
+            volumebar = findViewById(R.id.seekBarbrightness);
+            audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            volumebar.setMax(audioManager
+                    .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+            volumebar.setProgress(audioManager
+                    .getStreamVolume(AudioManager.STREAM_MUSIC));
+
+
+            volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onStopTrackingTouch(SeekBar arg0) {
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar arg0) {
+                }
+
+                @Override
+                public void onProgressChanged(SeekBar arg0, int progress, boolean arg2) {
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                            progress, 0);
+                    volno.setText(String.valueOf(progress));
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 }

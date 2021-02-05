@@ -83,10 +83,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="14dp"
-                android:textColor="#FFFFFF"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/imageView15"
                 android:layout_toEndOf="@+id/imageView13"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -95,8 +97,10 @@
                 android:layout_below="@+id/textView10"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/imageView15"
                 android:layout_toEndOf="@+id/imageView13"
-                android:text="TextView"
+                android:text="unknown"
                 android:textColor="#FFFFFF"
                 android:textSize="8dp" />
         </RelativeLayout>

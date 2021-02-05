@@ -277,6 +277,16 @@ void select(){
             loadData();
 
         }
+        else if(modetext.equals(null)){
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(mode, "day");
+            editor.apply();
+            Toast.makeText(MainActivity.this, "day mode", Toast.LENGTH_SHORT ).show();
+            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.vol));
+            loadData();
+
+        }
         else Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG).show();
     }
 

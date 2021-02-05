@@ -13,14 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363"
         tools:ignore="MissingConstraints" />
 
-    <androidx.appcompat.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,67 +32,132 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="15dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/imageView17"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_more_vert_black_24dp"
             tools:layout_editor_absoluteX="119dp" />
 
 
-    </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
 
-    <androidx.appcompat.widget.Toolbar
+    <RelativeLayout
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="106dp"
         android:background="?attr/colorPrimary"
+        android:backgroundTint="#BF1B1A1A"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="#BF1B1A1A"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageView
             android:id="@+id/leftseek"
-            android:layout_width="220dp"
-            android:layout_height="70dp"
-            android:paddingLeft="0dp"
-            android:src="@drawable/ic_fast_rewind_black_24dp"
-            android:paddingBottom="0dp"
-            tools:layout_editor_absoluteX="16dp" />
+            android:layout_width="142dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/imageView19"
+            android:src="@drawable/ic_fast_rewind_black_24dp" />
 
         <ImageView
             android:id="@+id/pause"
-            android:layout_width="250dp"
-            android:layout_height="70dp"
-            android:paddingLeft="0dp"
-            android:src="@drawable/ic_pause_circle_filled_black_24dp"
-            tools:layout_editor_absoluteX="16dp" />
+            android:layout_width="168dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/leftseek"
+            android:src="@drawable/ic_pause_circle_filled_black_24dp" />
+
         <ImageView
             android:id="@+id/rightseekk"
-            android:layout_width="220dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_fast_forward_black_24dp"
-            tools:layout_editor_absoluteX="16dp" />
+            android:layout_width="150dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/pause"
+            android:src="@drawable/ic_fast_forward_black_24dp" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="22dp" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="150dp"
+            android:layout_height="52dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/rightseekk"
+            app:srcCompat="@drawable/full" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="147dp"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            app:srcCompat="@drawable/lock" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="00:00:00" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:text="00:00:00" />
 
 
-
-    </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
 
     <SeekBar
         android:id="@+id/seekBarvolume"
@@ -120,52 +183,47 @@
         android:id="@+id/imageView12"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="67dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarvolume"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toStartOf="@+id/textbri"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:srcCompat="@drawable/vol" />
 
     <TextView
         android:id="@+id/textbri"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="56dp"
         android:padding="5dp"
         android:text="1"
         android:textColor="@color/bri"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarvolume"
+        app:layout_constraintEnd_toStartOf="@+id/seekBarvolume"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:srcCompat="@drawable/ic_volume_up_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarbrightness"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toEndOf="@+id/textvol"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:srcCompat="@drawable/ic_volume_up_black_24dp" />
+
     <TextView
         android:id="@+id/textvol"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        android:text="1"
+        android:layout_marginTop="56dp"
         android:padding="5dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
+        android:text="1"
         android:textColor="@color/vol"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarbrightness"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/seekBarbrightness"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:srcCompat="@drawable/ic_volume_up_black_24dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

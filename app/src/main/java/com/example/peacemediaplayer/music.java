@@ -3,10 +3,15 @@ package com.example.peacemediaplayer;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -22,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +71,7 @@ public class music extends AppCompatActivity {
                     mediaPlayer.seekTo(stopPosition);
                     mediaPlayer.start();
                   playconfirm=playconfirm+1;
+                  addNotification();
 
               }
              else
@@ -73,6 +80,7 @@ public class music extends AppCompatActivity {
                     stopPosition = mediaPlayer.getCurrentPosition();
                     mediaPlayer.pause();
                     playconfirm=playconfirm-1;
+                    addNotification();
                 }
 
             }
@@ -190,7 +198,28 @@ public class music extends AppCompatActivity {
         }
 
     }
-    
+
+    @Override
+    public void onBackPressed() {
+        if(path!=null) {
+            mediaPlayer.stop();
+        }
+       finish();
+    }
+
+    private void addNotification() {
+
+        String ns = Context.NOTIFICATION_SERVICE;
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(ns);
+
+        Notification notification = new Notification(R.drawable.peace, null,
+                System.currentTimeMillis());
+
+        RemoteViews notificationView = new RemoteViews(getPackageName(),
+                R.layout.activity_notification);
+
+    }
 
     }
 
