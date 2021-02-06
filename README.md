@@ -8,3 +8,9 @@ this is an add free media player from which you can play videos and music in you
 
 **3.night and day mode ui**
 ![IMG-20210124-WA0021](https://user-images.githubusercontent.com/56879646/105678148-d145e180-5f12-11eb-8eea-bffa7467970e.jpg)
+
+
+![Screenshot_20210206-205352](https://user-images.githubusercontent.com/56879646/107122418-bd5c9100-68bd-11eb-9a42-099163513b99.png)
+
+
+![Screenshot_20210206-205424](https://user-images.githubusercontent.com/56879646/107122464-eed55c80-68bd-11eb-877e-5d7143b2c9a4.png)
