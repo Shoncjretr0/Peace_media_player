@@ -3,10 +3,10 @@ this is an add free media player from which you can play videos and music in you
 **1. this is the main activity where you can find the folders which contain the videos**
 ![IMG-20210124-WA0017](https://user-images.githubusercontent.com/56879646/105677650-23d2ce00-5f12-11eb-89fd-55e7f19b2e27.jpg)
 
-2.music player**
+2.music player
 ![IMG-20210124-WA0019](https://user-images.githubusercontent.com/56879646/105678048-acea0500-5f12-11eb-94e3-0140de7bf246.jpg)
 
-3.night and day mode ui**
+3.night and day mode ui
 ![IMG-20210124-WA0021](https://user-images.githubusercontent.com/56879646/105678148-d145e180-5f12-11eb-8eea-bffa7467970e.jpg)
 
 4.file view
