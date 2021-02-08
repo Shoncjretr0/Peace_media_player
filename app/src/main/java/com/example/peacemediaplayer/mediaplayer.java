@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -45,7 +46,7 @@ public class mediaplayer extends AppCompatActivity implements
     String duration = Main2Activity.duration1;
     int stopPosition, seekPosition;
     VideoView video;
-    ImageView play;
+    ImageView play,lock,viewswap;
     ImageView reverseseek;
     ImageView forwardseek;
     int playvariable;
@@ -78,6 +79,7 @@ public class mediaplayer extends AppCompatActivity implements
         forwardseek = findViewById(R.id.rightseekk);
         brightnessbar = findViewById(R.id.seekBarvolume);
         volumebar = findViewById(R.id.seekBarbrightness);
+        viewswap=findViewById(R.id.swapview);
         r1 = findViewById(R.id.toolbar3);
         r2 = findViewById(R.id.toolbar2);
         bri = findViewById(R.id.imageView12);
@@ -93,7 +95,21 @@ public class mediaplayer extends AppCompatActivity implements
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         initControls();
+        final Context context=mediaplayer.this;
+        viewswap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                int paddingDp = 250;
+                float density = context.getResources().getDisplayMetrics().density;
+                int paddingPixel = (int)(paddingDp * density);
+                video.setPadding(paddingPixel,paddingPixel,paddingPixel,paddingPixel);
+
+
+            }
+
+
+        });
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,9 +264,7 @@ public class mediaplayer extends AppCompatActivity implements
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
-        Toast.makeText(this, "single tap", Toast.LENGTH_SHORT).show();
         settab();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -445,7 +459,7 @@ public class mediaplayer extends AppCompatActivity implements
                 videobar.postDelayed(onEverySecond, 1000);
             }
 
-            int a=Integer.parseInt(String.valueOf(video.getDuration()));
+            int a=Integer.parseInt(String.valueOf(video.getCurrentPosition()));
             String time = String.format("%02d:%02d",
                     TimeUnit.MILLISECONDS.toMinutes(a),
                     TimeUnit.MILLISECONDS.toSeconds(a) -
