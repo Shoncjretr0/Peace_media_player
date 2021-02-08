@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.widget.VideoView;
 
 import java.io.File;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class mediaplayer extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -54,9 +56,11 @@ public class mediaplayer extends AppCompatActivity implements
     private AudioManager mAudioManager;
     SeekBar brightnessbar;
     SeekBar volumebar = null;
+    SeekBar videobar;
     RelativeLayout r1, r2;
     ImageView bri, vol;
     TextView brino, volno;
+    TextView startno,endno;
     private AudioManager audioManager = null;
 
 
@@ -80,6 +84,9 @@ public class mediaplayer extends AppCompatActivity implements
         vol = findViewById(R.id.imageView16);
         brino = findViewById(R.id.textbri);
         volno = findViewById(R.id.textvol);
+        videobar=findViewById(R.id.seekBar2);
+        startno=findViewById(R.id.textView12);
+        endno=findViewById(R.id.textView13);
         tv.setText(vedioname);
         Uri s = Uri.fromFile(new File(url));
         video.setVideoPath(String.valueOf(s));
@@ -370,13 +377,83 @@ public class mediaplayer extends AppCompatActivity implements
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                             progress, 0);
                     volno.setText(String.valueOf(progress));
+
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+                videobar.setMax(video.getDuration());
+                videobar.postDelayed(onEverySecond, 1000);
+                int a=Integer.parseInt(String.valueOf(video.getDuration()));
+                String time = String.format("%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(a),
+                        TimeUnit.MILLISECONDS.toSeconds(a) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(a))
+                );
+                endno.setText(time);
+            }
+        });
+        videobar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+
+                if(fromUser) {
+                    // this is when actually seekbar has been seeked to a new position
+                    video.seekTo(progress);
+                    int a=Integer.parseInt(String.valueOf(progress));
+                    String time = String.format("%02d:%02d",
+                            TimeUnit.MILLISECONDS.toMinutes(a),
+                            TimeUnit.MILLISECONDS.toSeconds(a) -
+                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(a))
+                    );
+                    startno.setText(time);
+                }
+            }
+        });
+
 
     }
+    private Runnable onEverySecond=new Runnable() {
+
+        @Override
+        public void run() {
+
+            if(videobar != null) {
+                videobar.setProgress(video.getCurrentPosition());
+            }
+
+            if(video.isPlaying()) {
+                videobar.postDelayed(onEverySecond, 1000);
+            }
+
+            int a=Integer.parseInt(String.valueOf(video.getDuration()));
+            String time = String.format("%02d:%02d",
+                    TimeUnit.MILLISECONDS.toMinutes(a),
+                    TimeUnit.MILLISECONDS.toSeconds(a) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(a))
+            );
+            startno.setText(time);
+
+        }
+    };
 
 }

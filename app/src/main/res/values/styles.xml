@@ -34,5 +34,17 @@
         parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_dialog</item>
     </style>
+    <style name="SeekBarvideo"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/video</item>
+    </style>
+    <style name="SeekBarbri"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/bri</item>
+    </style>
+    <style name="SeekBarvol"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/vol</item>
+    </style>
 
 </resources>

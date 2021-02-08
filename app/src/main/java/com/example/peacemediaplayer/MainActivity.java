@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item1:
                 Intent myIntent=new Intent(Intent.ACTION_SEND);
                 myIntent.setType("text/plain");
-                String shareBody="https://shoncj.wordpress.com/2020/03/25/thunder-app/ try this app";
+                String shareBody="https://shoncj.wordpress.com/2021/02/05/peace-media-player/?preview==true";
                 String shareSub="hope you download it";
                 myIntent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
                 myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);

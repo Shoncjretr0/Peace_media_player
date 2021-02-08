@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="nightmode">#DF121010</color>
-    <color name="bri">#FFEB3B</color>
+    <color name="bri">#FFE500</color>
     <color name="vol">#03A9F4</color>
+    <color name="video">#3700B3</color>
 </resources>
