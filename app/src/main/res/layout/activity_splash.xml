@@ -4,28 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#F1000000"
     tools:context=".splash">
 
-    <ImageView
-        android:id="@+id/imageViewsplash"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156"
-        app:srcCompat="@drawable/clipart796508" />
+
 
     <TextView
         android:id="@+id/tvuserlogin"
-        android:layout_width="177dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="74dp"
         android:gravity="center_horizontal"
-        android:text="peace bitch"
+        android:text="Peace Media Player"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="22sp"

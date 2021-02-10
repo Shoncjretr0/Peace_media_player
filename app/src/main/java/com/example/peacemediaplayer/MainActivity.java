@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     ListView simpleList;
     private videoadapter mAdapter;
     SharedPreferences sharedpreferences;
-    private static final int STORAGE_PERMISSION_CODE = 101;
     public static String path;
 
 
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         loadData();
-        checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
         String selection=MediaStore.Video.Media.DATA + " != 0";
         Toast.makeText(MainActivity.this, selection, Toast.LENGTH_SHORT).show();
@@ -296,51 +294,9 @@ void select(){
 
     }
 
-    public void checkPermission(String permission, int requestCode)
-    {
-        if (ContextCompat.checkSelfPermission(MainActivity.this, permission)
-                == PackageManager.PERMISSION_DENIED) {
 
-            // Requesting the permission
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[] { permission },
-                    requestCode);
-        }
-        else {
-            Toast.makeText(MainActivity.this,
-                    "",
-                    Toast.LENGTH_SHORT)
-                    .show();
-        }
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults)
-    {
-        super
-                .onRequestPermissionsResult(requestCode,
-                        permissions,
-                        grantResults);
 
-       if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(MainActivity.this,
-                        "Storage Permission Granted",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-            else {
-                Toast.makeText(MainActivity.this,
-                        "Storage Permission Denied",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-
-    }
 
 
 }

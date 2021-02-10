@@ -26,7 +26,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".file" />
         <activity android:name=".folder" />
-        <activity android:name=".splash" />
+        <activity android:name=".splash"
+            android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".mediaplayer"
             android:configChanges="orientation|keyboardHidden"
@@ -36,11 +43,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

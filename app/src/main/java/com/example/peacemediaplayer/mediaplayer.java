@@ -63,7 +63,7 @@ public class mediaplayer extends AppCompatActivity implements
     TextView brino, volno;
     TextView startno,endno;
     private AudioManager audioManager = null;
-
+    final Context context=mediaplayer.this;
 
     @SuppressLint("NewApi")
     @Override
@@ -95,7 +95,7 @@ public class mediaplayer extends AppCompatActivity implements
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         initControls();
-        final Context context=mediaplayer.this;
+
         viewswap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
