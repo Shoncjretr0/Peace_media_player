@@ -13,4 +13,12 @@
     <string name="the_weeknd_starboy_ft_daft_punk_official_video">The Weeknd - Starboy ft. Daft Punk (Official Video)</string>
     <string name="app_theme">#ffffff</string>
     <string name="todo">TODO</string>
+    <string name="r_d"><![CDATA[ R&D ]]></string>
+    <array name="filters">
+        <item>sort music</item>
+        <item>alphebet</item>
+        <item>newest</item>
+        <item>oldest</item>
+        <item>duration</item>
+    </array>
 </resources>

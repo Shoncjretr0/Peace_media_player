@@ -29,18 +29,19 @@ public class bottomsheetlayout extends BottomSheetDialogFragment {
          hj=v.findViewById(R.id.textView11);
          fg.setText(name);
         MediaMetadataRetriever metaRetriver = new MediaMetadataRetriever();
-        metaRetriver.setDataSource(path);
-        try {
+        if(path!=null) {
+            metaRetriver.setDataSource(path);
+            try {
 
-            hj.setText(metaRetriver
-                    .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+                hj.setText(metaRetriver
+                        .extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
 
-        } catch (Exception e) {
+            } catch (Exception e) {
 
-            hj.setText("Unknown Artist");
+                hj.setText("Unknown Artist");
+            }
+
         }
-
-
         return v;
     }
 

@@ -76,5 +76,14 @@
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundednew"
+        android:textSize="10dp" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
