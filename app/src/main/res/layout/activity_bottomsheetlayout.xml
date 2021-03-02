@@ -51,7 +51,7 @@
                 android:layout_marginStart="21dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:srcCompat="@drawable/weekend" />
+                app:srcCompat="@drawable/ic_music_note_black_24dp" />
 
             <ImageView
                 android:id="@+id/imageView14"

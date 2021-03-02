@@ -40,7 +40,7 @@
             android:name=".mediaplayer"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
