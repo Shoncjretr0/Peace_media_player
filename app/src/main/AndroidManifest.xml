@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/clipart796508"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notification"></activity>
+        <activity android:name=".statistics"></activity>
+        <activity android:name=".notification" />
         <activity android:name=".test" />
         <activity android:name=".bottomsheetlayout" />
         <activity android:name=".musiclayout" />
@@ -26,13 +27,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".file" />
         <activity android:name=".folder" />
-        <activity android:name=".splash"
+        <activity
+            android:name=".splash"
             android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".mediaplayer"
@@ -42,8 +44,8 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

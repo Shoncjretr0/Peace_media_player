@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/item4"
-        android:title="coin"
+        android:title="theme"
         android:icon="@drawable/ic_brightness_3_black_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
     <item android:id="@+id/item3"
-        android:title="chat"
+        android:title="music"
         android:icon="@drawable/ic_music_note_black_24dp"
-        app:showAsAction="ifRoom"/>
+       app:showAsAction="always"/>
+    <item android:id="@+id/item5"
+        android:title="statistics"
+        android:icon="@drawable/statistics"
+        app:showAsAction="always"/>
+
     <item android:id="@+id/item1"
         android:title="share"
         app:showAsAction="ifRoom" />

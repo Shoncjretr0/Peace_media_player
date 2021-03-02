@@ -212,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item4:
                 //nightmode
                  modde();
+            case R.id.item5:
+                startActivity(new Intent(MainActivity.this, statistics.class));
 
                 return true;
             default:
