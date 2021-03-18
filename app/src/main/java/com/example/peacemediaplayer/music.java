@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -190,6 +191,15 @@ public class music extends AppCompatActivity {
                 return true;
             case R.id.item3:
                 //music
+                return true;
+            case R.id.item4:
+                //nightmode
+                View menuItemView = findViewById(R.id.item4); // SAME ID AS MENU ID
+                PopupMenu popupMenu = new PopupMenu(this, menuItemView);
+                popupMenu.inflate(R.menu.popup_menu);
+                // ...
+                popupMenu.show();
+
                 return true;
 
             default:

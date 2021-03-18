@@ -79,7 +79,7 @@ public class mediaplayer extends AppCompatActivity implements
         forwardseek = findViewById(R.id.rightseekk);
         brightnessbar = findViewById(R.id.seekBarvolume);
         volumebar = findViewById(R.id.seekBarbrightness);
-        viewswap=findViewById(R.id.swapview);
+        viewswap=findViewById(R.id.viewswapimg);
         r1 = findViewById(R.id.toolbar3);
         r2 = findViewById(R.id.toolbar2);
         bri = findViewById(R.id.imageView12);

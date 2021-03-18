@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:backgroundTint="#BF1B1A1A"
+        android:backgroundTint="#B01B1A1A"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="106dp"
         android:background="?attr/colorPrimary"
-        android:backgroundTint="#BF1B1A1A"
+        android:backgroundTint="#B01B1A1A"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +116,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="22dp" />
 
-        <ImageView
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/swapview"
             android:layout_width="150dp"
             android:layout_height="52dp"
@@ -125,8 +127,41 @@
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@+id/rightseekk"
-            app:srcCompat="@drawable/full" />
+            android:layout_toEndOf="@+id/rightseekk">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                app:layout_anchorGravity="end|top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_brightness_1_black_24dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="11dp"
+                android:layout_height="12dp"
+                android:padding="1dp"
+                android:paddingTop="3dp"
+                android:textStyle="bold"
+                android:text=" 1"
+                android:textColor="#FFFFFF"
+                android:textSize="9dp"
+                app:layout_anchor="@+id/imageView4"
+                app:layout_anchorGravity="center" />
+
+           <ImageView
+               android:id="@+id/viewswapimg"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:srcCompat="@drawable/ic_view_carousel_black_24dp"
+               />
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ImageView
             android:id="@+id/imageView19"
@@ -136,7 +171,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
             android:layout_marginBottom="0dp"
-            app:srcCompat="@drawable/lock" />
+            app:srcCompat="@drawable/ic_repeat_black_24dp" />
 
         <TextView
             android:id="@+id/textView12"
