@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/clipart796508"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".statistics"></activity>
+        <activity android:name=".about"></activity>
+        <activity android:name=".statistics" />
         <activity android:name=".notification" />
         <activity android:name=".test" />
         <activity android:name=".bottomsheetlayout" />
@@ -44,8 +45,7 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class music extends AppCompatActivity {
     static MediaPlayer mediaPlayer;
     static String path,name;
     static int stopPosition,seekPosition;
+    SearchView search;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class music extends AppCompatActivity {
         text=findViewById(R.id.text);
         songname=findViewById(R.id.textView6);
         play=findViewById(R.id.imageView5);
+        search=findViewById(R.id.searchView);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +165,32 @@ public class music extends AppCompatActivity {
 
 
 
+            }
+        });
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                if(query!=null){
+
+                    String output=query;
+
+                    String[] a= songdetails.toArray(new String[0]);
+
+                    Toast.makeText(music.this, a[1],Toast.LENGTH_LONG).show();
+
+
+
+
+                }else{
+                    Toast.makeText(music.this, "text field is empty",Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
 

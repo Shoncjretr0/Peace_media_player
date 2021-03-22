@@ -278,7 +278,7 @@ void select(){
             loadData();
 
         }
-        else if(modetext.equals(null)){
+        else{
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(mode, "day");
@@ -288,7 +288,7 @@ void select(){
             loadData();
 
         }
-        else Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG).show();
+       // else Toast.makeText(MainActivity.this, "error", Toast.LENGTH_LONG).show();
     }
 
     public void loadData() {
