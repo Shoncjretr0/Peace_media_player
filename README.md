@@ -4,8 +4,8 @@ this is an add free media player from which you can play videos and music in you
 
 ![IMG-20210401-WA0001](https://user-images.githubusercontent.com/56879646/113195315-c34c6e00-927f-11eb-9f44-7173e0859947.jpg)
 2.music player
-![IMG-20210124-WA0019](https://user-images.githubusercontent.com/56879646/105678048-acea0500-5f12-11eb-94e3-0140de7bf246.jpg)
 
+![Screenshot_2021-04-01-00-11-58-687](https://user-images.githubusercontent.com/56879646/113195595-145c6200-9280-11eb-8f61-4e62a4fa0765.jpeg)
 3.night and day mode ui
 ![IMG-20210124-WA0021](https://user-images.githubusercontent.com/56879646/105678148-d145e180-5f12-11eb-8eea-bffa7467970e.jpg)
 
