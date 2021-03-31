@@ -2,7 +2,7 @@ this is an add free media player from which you can play videos and music in you
 
 **1. this is the main activity where you can find the folders which contain the videos**
 
-
+![IMG-20210401-WA0001](https://user-images.githubusercontent.com/56879646/113195315-c34c6e00-927f-11eb-9f44-7173e0859947.jpg)
 2.music player
 ![IMG-20210124-WA0019](https://user-images.githubusercontent.com/56879646/105678048-acea0500-5f12-11eb-94e3-0140de7bf246.jpg)
 
