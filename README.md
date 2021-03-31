@@ -25,3 +25,5 @@ this is an add free media player from which you can play videos and music in you
 ![Screenshot_20210206-210222](https://user-images.githubusercontent.com/56879646/107122626-d31e8600-68be-11eb-9e92-ba4f97d2255d.png)
 
 7.about
+
+![IMG-20210401-WA0000](https://user-images.githubusercontent.com/56879646/113196875-9bf6a080-9281-11eb-914e-fe2146dfc4ac.jpg)
