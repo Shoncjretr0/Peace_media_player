@@ -73,7 +73,7 @@ public class splash extends AppCompatActivity {
                         "Storage Permission Granted",
                         Toast.LENGTH_SHORT)
                         .show();
-                    spl();
+                spl();
             }
             else {
                 Toast.makeText(splash.this,

@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -27,25 +28,110 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/boarderstraight"
+            app:srcCompat="@drawable/ic_keyboard_backspace_black_24dp" />
 
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/imageView17"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/jaja"
+            android:layout_toEndOf="@+id/back"
+
             android:text="TextView"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <RelativeLayout
+            android:id="@+id/jaja"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="27dp"
+            android:layout_toStartOf="@+id/info"
+            android:background="@drawable/backgroundboarder"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/textView17"
+                android:background="@drawable/roundedspinner"
+                android:text="  mp4  " />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/textView10"
+                android:background="@drawable/roundedgener"
+                android:text="  cc!  "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedresolution"
+                android:text="  360p  "
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/subtitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_new_releases_black_24dp"
+            tools:layout_editor_absoluteX="119dp" />
+
+        <ImageView
+            android:id="@+id/subtitle"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/imageView17"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_subtitles_black_24dp"
+            tools:layout_editor_absoluteX="119dp" />
 
         <ImageView
             android:id="@+id/imageView17"
@@ -53,7 +139,7 @@
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_more_vert_black_24dp"
@@ -78,7 +164,7 @@
 
         <ImageView
             android:id="@+id/leftseek"
-            android:layout_width="142dp"
+            android:layout_width="110dp"
             android:layout_height="52dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
@@ -91,19 +177,18 @@
             android:layout_width="168dp"
             android:layout_height="52dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@+id/leftseek"
             android:src="@drawable/ic_pause_circle_filled_black_24dp" />
 
         <ImageView
             android:id="@+id/rightseekk"
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="52dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@+id/pause"
+            android:layout_toStartOf="@+id/viewswapimg"
             android:src="@drawable/ic_fast_forward_black_24dp" />
 
         <SeekBar
@@ -112,60 +197,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:theme="@style/SeekBarvideo"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="22dp" />
+            android:layout_marginTop="22dp"
+            android:theme="@style/SeekBarvideo" />
 
 
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/swapview"
-            android:layout_width="150dp"
+        <ImageView
+            android:id="@+id/viewswapimg"
+            android:layout_width="110dp"
             android:layout_height="52dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
-            android:layout_toEndOf="@+id/rightseekk">
+            app:srcCompat="@drawable/ic_view_carousel_black_24dp" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="2dp"
-                app:layout_anchorGravity="end|top"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_brightness_1_black_24dp" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="11dp"
-                android:layout_height="12dp"
-                android:padding="1dp"
-                android:paddingTop="3dp"
-                android:textStyle="bold"
-                android:text=" 1"
-                android:textColor="#FFFFFF"
-                android:textSize="9dp"
-                app:layout_anchor="@+id/imageView4"
-                app:layout_anchorGravity="center" />
-
-           <ImageView
-               android:id="@+id/viewswapimg"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               app:srcCompat="@drawable/ic_view_carousel_black_24dp"
-               />
-
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ImageView
             android:id="@+id/imageView19"
-            android:layout_width="147dp"
+            android:layout_width="110dp"
             android:layout_height="52dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
@@ -181,8 +231,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="0dp"
-            android:textColor="#FFFFFF"
-            android:text="00:00:00" />
+            android:text="00:00:00"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/textView13"
@@ -192,8 +242,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="5dp"
-            android:textColor="#FFFFFF"
-            android:text="00:00:00" />
+            android:text="00:00:00"
+            android:textColor="#FFFFFF" />
 
 
     </RelativeLayout>

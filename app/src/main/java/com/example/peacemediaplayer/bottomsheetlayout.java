@@ -25,9 +25,9 @@ public class bottomsheetlayout extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_bottomsheetlayout, container, false);
 
-         fg=v.findViewById(R.id.textView10);
-         hj=v.findViewById(R.id.textView11);
-         fg.setText(name);
+        fg=v.findViewById(R.id.textView10);
+        hj=v.findViewById(R.id.textView11);
+        fg.setText(name);
         MediaMetadataRetriever metaRetriver = new MediaMetadataRetriever();
         if(path!=null) {
             metaRetriver.setDataSource(path);

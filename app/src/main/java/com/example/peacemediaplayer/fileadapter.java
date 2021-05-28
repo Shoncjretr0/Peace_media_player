@@ -54,6 +54,16 @@ public class fileadapter extends ArrayAdapter<filemodel> {
         TextView name = (TextView) listItem.findViewById(R.id.textView5);
         name.setText(currentMovie.getDispalyname());
         i=listItem.findViewById(R.id.imageView);
+        TextView duration=listItem.findViewById(R.id.textView21);
+        TextView resdisp=listItem.findViewById(R.id.textView16);
+        String durationn = currentMovie.getDuration();
+        int a=Integer.parseInt(durationn);
+        String time = String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(a),
+                TimeUnit.MILLISECONDS.toSeconds(a) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(a))
+        );
+        duration.setText(time);
         String id=currentMovie.getId();
         Bitmap albumart=currentMovie.getAlbumartt();
 
@@ -62,6 +72,11 @@ public class fileadapter extends ArrayAdapter<filemodel> {
        // options.inSampleSize = 1;
        // Bitmap curThumb = MediaStore.Video.Thumbnails.getThumbnail(crThumb, Long.parseLong(id), MediaStore.Video.Thumbnails.MICRO_KIND, options);
         i.setImageBitmap(albumart);
+       MediaMetadataRetriever metaRetriever = new MediaMetadataRetriever();
+      //  metaRetriever.setDataSource(currentMovie.getData());
+       // String height = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+       // String width = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+       //  resdisp.setText(" "+height+"p ");
 
 
         return listItem;

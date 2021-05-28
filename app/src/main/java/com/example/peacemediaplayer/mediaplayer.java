@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -60,10 +61,13 @@ public class mediaplayer extends AppCompatActivity implements
     SeekBar videobar;
     RelativeLayout r1, r2;
     ImageView bri, vol;
-    TextView brino, volno;
-    TextView startno,endno;
+    TextView brino, volno,resoldisplay,videoformat;
+    TextView startno,endno,swapnoimg;
     private AudioManager audioManager = null;
     final Context context=mediaplayer.this;
+    ImageView shuffle;
+    static int shuffleno=0;
+    static int viewswapno=0;
 
     @SuppressLint("NewApi")
     @Override
@@ -85,16 +89,24 @@ public class mediaplayer extends AppCompatActivity implements
         bri = findViewById(R.id.imageView12);
         vol = findViewById(R.id.imageView16);
         brino = findViewById(R.id.textbri);
+        shuffle=findViewById(R.id.imageView19);
         volno = findViewById(R.id.textvol);
         videobar=findViewById(R.id.seekBar2);
         startno=findViewById(R.id.textView12);
         endno=findViewById(R.id.textView13);
+        resoldisplay=findViewById(R.id.textView10);
+        videoformat=findViewById(R.id.textView16);
         tv.setText(vedioname);
         Uri s = Uri.fromFile(new File(url));
         video.setVideoPath(String.valueOf(s));
         video.start();
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         initControls();
+        MediaMetadataRetriever metaRetriever = new MediaMetadataRetriever();
+         metaRetriever.setDataSource(url);
+         String height = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
+         String width = metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
+          resoldisplay.setText(" "+height+"p ");
 
         viewswap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +122,31 @@ public class mediaplayer extends AppCompatActivity implements
 
 
         });
+        shuffle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(shuffleno==0){
+
+                    shuffle.setImageResource(R.drawable.ic_repeat_one_black_24dp);
+                    shuffleno=shuffleno+1;
+
+                }
+                else if(shuffleno==1)
+                {
+                    shuffle.setImageResource(R.drawable.videoshuffleoff);
+                    shuffleno=shuffleno+1;
+                }
+
+                else
+                {
+                    shuffle.setImageResource(R.drawable.ic_repeat_black_24dp);
+                    shuffleno=0;
+
+                }
+
+
+            }});
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

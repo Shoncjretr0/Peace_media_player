@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000" >
 
 
     <RelativeLayout
@@ -39,7 +40,7 @@
             android:layout_above="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/nightmode"
+            android:background="#000000"
             >
                 <RelativeLayout
                     android:id="@+id/RELsearchView"
@@ -102,7 +103,9 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginBottom="0dp" />
+                    android:layout_marginBottom="0dp"
+                    android:choiceMode="singleChoice"
+                    android:listSelector="@android:color/darker_gray" />
             </RelativeLayout>
             </RelativeLayout>
 
@@ -115,7 +118,7 @@
             android:layout_height="50dp"
             android:id="@+id/bottomBar"
             android:layout_alignParentBottom="true"
-            android:background="@color/nightmode">
+            android:background="@drawable/bottommusicback">
 
             <TextView
                 android:id="@+id/text"

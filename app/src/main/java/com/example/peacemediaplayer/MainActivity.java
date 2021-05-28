@@ -217,6 +217,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, statistics.class));
 
                 return true;
+            case R.id.item6:
+                startActivity(new Intent(MainActivity.this, about.class));
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

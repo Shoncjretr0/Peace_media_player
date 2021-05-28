@@ -28,37 +28,38 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="270dp"
+            android:layout_width="260dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/imageView2"
             android:layout_toEndOf="@+id/imageView"
             android:text="@string/the_weeknd_starboy_ft_daft_punk_official_video"
             android:textColor="#ffffff" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="0dp"
-            app:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
         <TextView
             android:id="@+id/textView16"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:textColor="#000000" />
+
+
+
+        <TextView
+            android:id="@+id/textView21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView5"
-            android:layout_marginStart="224dp"
-            android:background="@drawable/roundednew"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/imageView" />
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/imageView"
+            android:textColor="#FFFFFF"
+            android:text="00:00" />
 
     </RelativeLayout>
 

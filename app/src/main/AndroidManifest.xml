@@ -13,7 +13,9 @@
         android:roundIcon="@drawable/clipart796508"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".about"></activity>
+        <activity android:name=".about"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+
         <activity android:name=".statistics" />
         <activity android:name=".notification" />
         <activity android:name=".test" />
@@ -28,6 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".file" />
         <activity android:name=".folder" />
+        <activity android:name=".App"/>
         <activity
             android:name=".splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -46,6 +49,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <receiver android:name=".NotificationReceiver" />
     </application>
 
 </manifest>

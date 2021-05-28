@@ -32,11 +32,11 @@ public class statistics extends AppCompatActivity {
 
         //initializing data
         Map<String, Integer> typeAmountMap = new HashMap<>();
-        typeAmountMap.put("Toys", 200);
-        typeAmountMap.put("Snacks", 230);
-        typeAmountMap.put("Clothes", 100);
-        typeAmountMap.put("Stationary", 500);
-        typeAmountMap.put("Phone", 50);
+        typeAmountMap.put("mp3", 200);
+        typeAmountMap.put("mp4", 230);
+        typeAmountMap.put("avg", 100);
+        typeAmountMap.put("cvd", 500);
+        typeAmountMap.put("mva", 50);
 
         //initializing colors for the entries
         ArrayList<Integer> colors = new ArrayList<>();

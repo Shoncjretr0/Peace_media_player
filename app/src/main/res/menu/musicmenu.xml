@@ -13,11 +13,15 @@
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/item1"
-        android:title="share"
+        android:title="Share"
         app:showAsAction="never" />
 
     <item android:id="@+id/item2"
-        android:title="settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/item5"
+        android:title="About"
         app:showAsAction="never" />
 
 
