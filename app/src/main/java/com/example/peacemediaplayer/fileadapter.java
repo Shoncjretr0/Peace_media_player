@@ -53,7 +53,7 @@ public class fileadapter extends ArrayAdapter<filemodel> {
 
         TextView name = (TextView) listItem.findViewById(R.id.textView5);
         name.setText(currentMovie.getDispalyname());
-        i=listItem.findViewById(R.id.imageView);
+        i=listItem.findViewById(R.id.roundedImageView);
         TextView duration=listItem.findViewById(R.id.textView21);
         TextView resdisp=listItem.findViewById(R.id.textView16);
         String durationn = currentMovie.getDuration();

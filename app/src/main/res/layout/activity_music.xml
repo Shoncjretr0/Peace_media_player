@@ -132,16 +132,19 @@
                 android:layout_toStartOf="@+id/imageView6" />
 
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/imageView3"
-                android:layout_width="59dp"
+                android:layout_width="39dp"
                 android:layout_height="39dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
+                android:backgroundTint="#00000000"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="5dp"
+                app:civ_border_color="#00FF0B"
+                app:civ_border_width="1dp"
                 app:srcCompat="@drawable/ic_music_note_black_24dp" />
 
             <TextView
@@ -150,7 +153,7 @@
                 android:layout_height="30dp"
                 android:layout_alignEnd="@+id/text"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="11dp"
                 android:layout_toEndOf="@+id/imageView3"

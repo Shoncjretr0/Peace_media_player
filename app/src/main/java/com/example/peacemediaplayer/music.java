@@ -14,6 +14,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +27,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -48,7 +54,7 @@ public class music extends AppCompatActivity {
     private musicadapter mAdapter;
     private searchmusicadapter sadapter;
     TextView songname,text;
-    ImageView play,shuffle;
+    ImageView play,shuffle,imagesongbottom;
     static int playconfirm=0;
     static MediaPlayer mediaPlayer;
     static String path,name;
@@ -72,6 +78,7 @@ public class music extends AppCompatActivity {
         play=findViewById(R.id.imageView5);
         search=findViewById(R.id.searchView);
         shuffle=findViewById(R.id.imageView6);
+        imagesongbottom=findViewById(R.id.imageView3);
        // notificationManager = NotificationManagerCompat.from(this);
         //showNotification();
         context = this;
@@ -213,6 +220,23 @@ public class music extends AppCompatActivity {
                 }
 
                 songname.setText(name);
+                android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                mmr.setDataSource(path);
+
+                byte [] data = mmr.getEmbeddedPicture();
+                if(data != null)
+                {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    imagesongbottom.setImageBitmap(bitmap);
+                    diskrotate();
+
+                }
+                else
+                {
+                    imagesongbottom.setImageResource(R.drawable.ic_music_note_black_24dp);
+                    diskrotate();
+
+                }
                 play.setImageResource(R.drawable.ic_pause_circle_filled_black_24dp);
                 mediaPlayer = new MediaPlayer();
 
@@ -416,8 +440,19 @@ public class music extends AppCompatActivity {
                 .setStyle(new NotificationCompat.BigPictureStyle())
                 .build();
         notificationManager.notify(1, notification);
+
+    }
+    void diskrotate() {
+
+        RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate.setDuration(5000);
+        rotate.setRepeatCount(1000);
+        rotate.setInterpolator(new LinearInterpolator());
+
+        imagesongbottom.startAnimation(rotate);
     }
     }
+
 
 
 
