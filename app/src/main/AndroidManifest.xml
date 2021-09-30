@@ -30,7 +30,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".file" />
         <activity android:name=".folder" />
-        <activity android:name=".App"/>
         <activity
             android:name=".splash"
             android:theme="@style/AppTheme.NoActionBar">

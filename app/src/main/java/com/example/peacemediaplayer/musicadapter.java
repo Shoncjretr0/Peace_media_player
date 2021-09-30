@@ -1,6 +1,7 @@
 package com.example.peacemediaplayer;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.media.MediaMetadataRetriever;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
@@ -50,7 +53,7 @@ public class musicadapter extends ArrayAdapter<AudioModel> {
 
         AudioModel currentMovie = moviesList.get(position);
 
-        ImageView image = (ImageView)listItem.findViewById(R.id.imageView);
+        ImageView image = (ImageView)listItem.findViewById(R.id.roundedImageView);
         imagedisk= listItem.findViewById(R.id.imageView23);
         String g=currentMovie.getData();
         String f=currentMovie.getMid();
@@ -64,7 +67,23 @@ public class musicadapter extends ArrayAdapter<AudioModel> {
 
 
       //  }
+
         image.setImageResource(R.drawable.ic_music_note_black_24dp);
+        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(currentMovie.getData().toString());
+
+        byte [] data = mmr.getEmbeddedPicture();
+        if(data != null)
+        {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            image.setImageBitmap(bitmap);
+
+        }
+        else
+        {
+            image.setImageResource(R.drawable.ic_music_note_black_24dp);
+
+        }
 
 
 
@@ -96,5 +115,6 @@ public class musicadapter extends ArrayAdapter<AudioModel> {
 
         imagedisk.startAnimation(rotate);
     }
+
 }
 

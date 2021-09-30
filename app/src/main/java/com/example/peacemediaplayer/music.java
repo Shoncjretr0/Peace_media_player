@@ -56,7 +56,12 @@ public class music extends AppCompatActivity {
     SearchView search;
     static int shuffleno=0;
     String output;
-    private NotificationManagerCompat notificationManager;
+    //private NotificationManagerCompat notificationManager;
+    private NotificationCompat.Builder builder;
+    private NotificationManager notificationManager;
+    private int notification_id;
+    private RemoteViews remoteViews;
+    private Context context;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +72,19 @@ public class music extends AppCompatActivity {
         play=findViewById(R.id.imageView5);
         search=findViewById(R.id.searchView);
         shuffle=findViewById(R.id.imageView6);
-        notificationManager = NotificationManagerCompat.from(this);
-        showNotification();
+       // notificationManager = NotificationManagerCompat.from(this);
+        //showNotification();
+        context = this;
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        builder = new NotificationCompat.Builder(this);
+
+        remoteViews = new RemoteViews(getPackageName(),R.layout.notification_expanded);
+        //remoteViews.setImageViewResource(R.id.notif_icon,R.mipmap.ic_launcher);
+      //  remoteViews.setTextViewText(R.id.notif_title,"TEXT");
+        //remoteViews.setProgressBar(R.id.progressBar,100,40,true);
+
+
+
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +142,7 @@ public class music extends AppCompatActivity {
                 {
                     shuffle.setImageResource(R.drawable.musicshuffleor);
                     shuffleno=shuffleno+1;
+                    addNotification();
                 }
 
                 else
@@ -357,15 +374,29 @@ public class music extends AppCompatActivity {
 
     private void addNotification() {
 
-        String ns = Context.NOTIFICATION_SERVICE;
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(ns);
 
-        Notification notification = new Notification(R.drawable.peace, null,
-                System.currentTimeMillis());
+        int icon = R.drawable.ic_music_note_black_24dp;
+        long when = System.currentTimeMillis();
+        Notification notification = new Notification(icon, "Custom Notification", when);
 
-        RemoteViews notificationView = new RemoteViews(getPackageName(),
-                R.layout.activity_notification);
+        NotificationManager mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_expanded);
+        contentView.setImageViewResource(R.id.image, R.drawable.ic_brightness_1_black_24dp);
+        contentView.setTextViewText(R.id.title, "Custom notification");
+        contentView.setTextViewText(R.id.text, "This is a custom layout");
+        notification.contentView = contentView;
+
+        Intent notificationIntent = new Intent(this, music.class);
+        notification.contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+        notification.flags |= Notification.FLAG_NO_CLEAR; //Do not clear the notification
+        notification.defaults |= Notification.DEFAULT_LIGHTS; // LED
+        //notification.defaults |= Notification.DEFAULT_VIBRATE; //Vibration
+        //notification.defaults |= Notification.DEFAULT_SOUND; // Sound
+
+        mNotificationManager.notify(1, notification);
+
 
     }
 
@@ -378,12 +409,11 @@ public class music extends AppCompatActivity {
         PendingIntent clickPendingIntent = PendingIntent.getBroadcast(this,
                 0, clickIntent, 0);
         collapsedView.setTextViewText(R.id.text_view_collapsed_1, "Hello World!");
-        expandedView.setOnClickPendingIntent(R.id.text_view_expanded, clickPendingIntent);
+        //expandedView.setOnClickPendingIntent(R.id.text_view_expanded, clickPendingIntent);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_music_note_black_24dp)
-                .setCustomContentView(collapsedView)
                 .setCustomBigContentView(expandedView)
-                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setStyle(new NotificationCompat.BigPictureStyle())
                 .build();
         notificationManager.notify(1, notification);
     }
